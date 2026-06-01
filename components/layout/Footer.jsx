@@ -4,10 +4,10 @@ import styles from './Footer.module.css';
 const FOOTER_LINKS = {
   Boutique: [
     { href: '/categorie/audio', label: 'Audio' },
-    { href: '/categorie/telephones', label: 'Téléphones' },
+    { href: '/categorie/phones', label: 'Téléphones' },
     { href: '/categorie/power', label: 'Power Banks' },
-    { href: '/categorie/montres', label: 'Montres' },
-    { href: '/categorie/maison', label: 'Maison intelligente' },
+    { href: '/categorie/watches', label: 'Montres' },
+    { href: '/categorie/home', label: 'Maison intelligente' },
     { href: '/nouveautes', label: 'Nouveautés' },
   ],
   'Service client': [

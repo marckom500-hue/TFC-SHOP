@@ -24,6 +24,7 @@
   z-index: 1000;
   box-shadow: 0 2px 12px rgba(0,0,0,.08);
   border-bottom: 3px solid var(--primary);
+  overflow: visible;
 }
 
 .logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
@@ -55,12 +56,11 @@
 }
 .dropTrigger { display: flex; align-items: center; gap: 3px; background: none; border: none; font-family: 'Outfit', sans-serif; }
 .dropWrap { position: relative; }
-.dropWrap:hover .dropdown { display: block; }
 .dropdown {
-  display: none; position: absolute; top: calc(100% + 8px); left: 0;
+  position: absolute; top: calc(100% + 6px); left: 0;
   background: white; min-width: 180px; border-radius: 10px;
   box-shadow: 0 10px 40px rgba(0,0,0,.15); padding: 8px;
-  border: 1px solid #e0e0e0; animation: fadeDown .2s ease; z-index: 200;
+  border: 1px solid #e0e0e0; animation: fadeDown .2s ease; z-index: 9999;
 }
 @keyframes fadeDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
 .dropdown a { display: block; padding: 8px 12px; border-radius: 6px; font-size: 13px; transition: all .15s; }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../lib/CartContext';
 import { useWishlist } from '../../lib/WishlistContext';
@@ -9,30 +9,30 @@ const NAV_ITEMS = [
     label: 'Audio',
     links: [
       { href: '/categorie/audio', label: 'Tous les audio' },
-      { href: '/categorie/audio/ecouteurs', label: 'Écouteurs TWS' },
-      { href: '/categorie/audio/casques', label: 'Casques' },
-      { href: '/categorie/audio/enceintes', label: 'Enceintes' },
-      { href: '/categorie/audio/barres-de-son', label: 'Barres de son' },
+      { href: '/categorie/audio', label: 'Écouteurs TWS' },
+      { href: '/categorie/audio', label: 'Casques' },
+      { href: '/categorie/audio', label: 'Enceintes' },
+      { href: '/categorie/audio', label: 'Barres de son' },
     ],
   },
   {
     label: 'Téléphones',
     links: [
-      { href: '/categorie/telephones', label: 'Tous les téléphones' },
-      { href: '/categorie/telephones/smartphones', label: 'Smartphones' },
-      { href: '/categorie/telephones/accessoires', label: 'Accessoires' },
+      { href: '/categorie/phones', label: 'Tous les téléphones' },
+      { href: '/categorie/phones', label: 'Smartphones' },
+      { href: '/categorie/phones', label: 'Accessoires' },
     ],
   },
   {
     label: 'Énergie',
     links: [
       { href: '/categorie/power', label: 'Power Banks' },
-      { href: '/categorie/power/cables', label: 'Câbles & Chargeurs' },
-      { href: '/categorie/power/solaire', label: 'Solaire' },
+      { href: '/categorie/power', label: 'Câbles & Chargeurs' },
+      { href: '/categorie/power', label: 'Solaire' },
     ],
   },
-  { label: 'Montres', href: '/categorie/montres' },
-  { label: 'Maison', href: '/categorie/maison' },
+  { label: 'Montres', href: '/categorie/watches' },
+  { label: 'Maison', href: '/categorie/home' },
   {
     label: 'Nouveautés',
     links: [
@@ -46,6 +46,18 @@ export default function Navbar() {
   const { count } = useCart();
   const { count: wishCount } = useWishlist();
   const [search, setSearch] = useState('');
+  const [openMenu, setOpenMenu] = useState(null);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setOpenMenu(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
   return (
     <>
@@ -53,7 +65,7 @@ export default function Navbar() {
         🎉 <strong>LIVRAISON GRATUITE</strong> sur toutes commandes ≥ 15 000 FCFA —{' '}
         <Link href="/offres">Commander maintenant ›</Link>
       </div>
-      <nav className={styles.nav}>
+      <nav className={styles.nav} ref={navRef}>
         <Link href="/" className={styles.logo}>
           <div className={styles.logoIcon}>TFC</div>
           <div>
@@ -67,14 +79,19 @@ export default function Navbar() {
           {NAV_ITEMS.map((item) =>
             item.links ? (
               <div className={styles.dropWrap} key={item.label}>
-                <button className={styles.dropTrigger}>
+                <button
+                  className={styles.dropTrigger}
+                  onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
+                >
                   {item.label} <span>▾</span>
                 </button>
-                <div className={styles.dropdown}>
-                  {item.links.map((l) => (
-                    <Link key={l.href} href={l.href}>{l.label}</Link>
-                  ))}
-                </div>
+                {openMenu === item.label && (
+                  <div className={styles.dropdown}>
+                    {item.links.map((l) => (
+                      <Link key={l.label} href={l.href} onClick={() => setOpenMenu(null)}>{l.label}</Link>
+                    ))}
+                  </div>
+                )}
               </div>
             ) : (
               <Link key={item.label} href={item.href}>{item.label}</Link>

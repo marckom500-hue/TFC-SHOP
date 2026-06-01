@@ -29,7 +29,7 @@ const SLIDES = [
     desc: 'Santé, sport, notifications. La montre connectée qui s\'adapte à votre vie active.',
     price: '35 000 FCFA',
     cta: 'Découvrir',
-    href: '/categorie/montres',
+    href: '/categorie/watches',
     bg: 'slide3',
     img: 'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=440&h=440&fit=crop&auto=format',
   },
