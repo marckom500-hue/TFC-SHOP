@@ -1,0 +1,6 @@
+.page { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; }
+.code { font-family: 'Bebas Neue', cursive; font-size: 120px; color: var(--primary); line-height: 1; opacity: .15; }
+.title { font-family: 'Bebas Neue', cursive; font-size: 40px; letter-spacing: 2px; color: #111; margin-top: -20px; margin-bottom: 12px; }
+.desc { color: #888; font-size: 15px; margin-bottom: 28px; }
+.btn { background: var(--primary); color: white; padding: 13px 32px; border-radius: 8px; font-weight: 700; font-size: 15px; transition: background .2s; }
+.btn:hover { background: var(--primary-dark); }

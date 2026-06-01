@@ -1,0 +1,16 @@
+.topbar {
+  background: #111;
+  color: #aaa;
+  font-size: 12px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.left { display: flex; gap: 20px; align-items: center; }
+.right { display: flex; gap: 12px; align-items: center; }
+.right a { color: #aaa; transition: color .2s; }
+.right a:hover { color: #FFD700; }
+.sep { color: #333; }
+@media (max-width: 640px) { .topbar { display: none; } }

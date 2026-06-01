@@ -1,0 +1,20 @@
+.page { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+.card { background: white; border-radius: 20px; padding: 40px; width: 100%; max-width: 420px; border: 1.5px solid #eee; box-shadow: 0 20px 60px rgba(0,0,0,.08); }
+.logo { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 28px; }
+.logoIcon { width: 44px; height: 44px; background: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', cursive; color: white; font-size: 18px; }
+.logoText { font-family: 'Bebas Neue', cursive; font-size: 26px; letter-spacing: 2px; color: #111; }
+.logoText span { color: var(--primary); }
+.logoSub { font-size: 9px; color: #aaa; letter-spacing: 3px; text-transform: uppercase; }
+.tabs { display: flex; background: #f5f5f5; border-radius: 10px; padding: 4px; margin-bottom: 28px; }
+.tabs button { flex: 1; padding: 10px; border: none; background: none; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500; color: #888; cursor: pointer; transition: all .2s; }
+.activeTab { background: white !important; color: #111 !important; font-weight: 700 !important; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.form { display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 13px; font-weight: 600; color: #444; }
+.field input { padding: 11px 14px; border: 1.5px solid #ddd; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 14px; outline: none; transition: border-color .2s; }
+.field input:focus { border-color: var(--primary); }
+.forgot { font-size: 12px; color: var(--primary); text-align: right; }
+.btnSubmit { background: var(--primary); color: white; border: none; padding: 13px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s; margin-top: 4px; }
+.btnSubmit:hover { background: var(--primary-dark); }
+.backHome { text-align: center; margin-top: 20px; font-size: 13px; color: #888; }
+.backHome a { color: var(--primary); font-weight: 600; }

@@ -1,0 +1,15 @@
+.strip {
+  background: white; padding: 18px 24px;
+  display: flex; gap: 8px; overflow-x: auto;
+  scrollbar-width: none; border-bottom: 1px solid #eee;
+}
+.strip::-webkit-scrollbar { display: none; }
+.item { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 76px; cursor: pointer; transition: transform .2s; }
+.item:hover { transform: translateY(-3px); }
+.icon {
+  width: 58px; height: 58px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; border: 2px solid #eee; background: #fafafa; transition: all .2s;
+}
+.item:hover .icon { border-color: var(--primary); background: #fef2f2; }
+.label { font-size: 11px; font-weight: 500; color: #444; text-align: center; line-height: 1.2; white-space: nowrap; }

@@ -1,0 +1,16 @@
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 24px 36px; }
+.banner {
+  border-radius: 14px; height: 200px; position: relative; overflow: hidden;
+  display: flex; align-items: center; padding: 30px; transition: transform .2s; cursor: pointer;
+}
+.banner:hover { transform: scale(1.01); }
+.b1 { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); }
+.b2 { background: linear-gradient(135deg, #2d1b00, #5c3700, #8b5500); }
+.content { z-index: 2; }
+.tag { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #FFD700; display: block; margin-bottom: 6px; }
+.title { font-family: 'Bebas Neue', cursive; font-size: 32px; color: white; letter-spacing: 2px; line-height: 1; margin-bottom: 8px; }
+.sub { font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 14px; }
+.btn { background: white; color: #111; font-size: 12px; font-weight: 700; padding: 7px 16px; border-radius: 5px; display: inline-block; transition: background .2s; letter-spacing: .3px; }
+.banner:hover .btn { background: #FFD700; }
+.deco { position: absolute; right: 24px; font-size: 88px; opacity: .15; line-height: 1; }
+@media (max-width: 640px) { .row { grid-template-columns: 1fr; } }

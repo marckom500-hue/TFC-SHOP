@@ -1,0 +1,13 @@
+.strip {
+  background: white; padding: 20px 24px;
+  display: flex; border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+  margin-bottom: 36px; overflow-x: auto; scrollbar-width: none;
+}
+.strip::-webkit-scrollbar { display: none; }
+.brand {
+  flex: 1; min-width: 110px; display: flex; align-items: center; justify-content: center;
+  padding: 12px 20px; font-family: 'Bebas Neue', cursive; font-size: 20px;
+  letter-spacing: 2px; color: #bbb; border-right: 1px solid #eee; cursor: pointer; transition: color .2s;
+}
+.brand:last-child { border-right: none; }
+.brand:hover { color: var(--primary); }

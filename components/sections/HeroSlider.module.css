@@ -1,0 +1,42 @@
+.hero { position: relative; height: 480px; overflow: hidden; }
+.track { display: flex; height: 100%; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+.slide {
+  min-width: 100%; height: 100%; display: flex; align-items: center;
+  position: relative; padding: 0 80px;
+}
+.slide1 { background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e); }
+.slide2 { background: linear-gradient(135deg, #1a0000, #3d0000, #600000); }
+.slide3 { background: linear-gradient(135deg, #0a1628, #0e2744, #1a3a5c); }
+
+.content { z-index: 2; flex: 1; }
+.tag { display: inline-block; background: var(--primary); color: white; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 4px 12px; border-radius: 3px; margin-bottom: 14px; }
+.title { font-family: 'Bebas Neue', cursive; font-size: 68px; color: white; line-height: .95; letter-spacing: 3px; margin-bottom: 14px; }
+.title span { color: #FFD700; }
+.desc { color: rgba(255,255,255,.65); font-size: 15px; margin-bottom: 20px; max-width: 380px; line-height: 1.5; }
+.priceLabel { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 24px; }
+.priceLabel strong { font-size: 30px; color: #FFD700; font-weight: 700; }
+.btns { display: flex; gap: 12px; }
+.btnPrimary { background: var(--primary); color: white; padding: 12px 28px; border-radius: 6px; font-weight: 600; font-size: 14px; transition: all .2s; }
+.btnPrimary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,51,41,.4); }
+.btnOutline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,.35); padding: 12px 24px; border-radius: 6px; font-size: 14px; transition: all .2s; }
+.btnOutline:hover { border-color: white; background: rgba(255,255,255,.1); }
+
+.imgWrap { position: absolute; right: 80px; bottom: 0; width: 380px; height: 420px; display: flex; align-items: flex-end; justify-content: center; animation: float 4s ease-in-out infinite; filter: drop-shadow(0 20px 40px rgba(0,0,0,.5)); }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+.arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+  border-radius: 50%; cursor: pointer; z-index: 5; color: white; font-size: 24px;
+  display: flex; align-items: center; justify-content: center; transition: all .2s; backdrop-filter: blur(4px);
+}
+.arrow:hover { background: var(--primary); border-color: var(--primary); }
+.arrowLeft { left: 16px; }
+.arrowRight { right: 16px; }
+
+.dots { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.35); border: none; cursor: pointer; transition: all .3s; padding: 0; }
+.dotActive { background: var(--primary); width: 24px; border-radius: 4px; }
+
+@media (max-width: 900px) { .title { font-size: 48px; } .imgWrap { width: 280px; height: 320px; right: 20px; } .hero { height: 380px; } }
+@media (max-width: 640px) { .slide { padding: 0 20px; } .title { font-size: 36px; } .imgWrap { opacity: .25; right: 0; width: 200px; height: 240px; } .hero { height: 300px; } }
