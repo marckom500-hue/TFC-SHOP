@@ -47,6 +47,8 @@ export default function Navbar() {
   const { count: wishCount } = useWishlist();
   const [search, setSearch] = useState('');
   const [openMenu, setOpenMenu] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState(null);
   const navRef = useRef(null);
 
   useEffect(() => {
@@ -59,6 +61,13 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
+  const closeAll = () => { setMobileOpen(false); setMobileExpanded(null); };
+
   return (
     <>
       <div className={styles.announce}>
@@ -66,7 +75,7 @@ export default function Navbar() {
         <Link href="/offres">Commander maintenant ›</Link>
       </div>
       <nav className={styles.nav} ref={navRef}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} onClick={closeAll}>
           <div className={styles.logoIcon}>TFC</div>
           <div>
             <div className={styles.logoText}>TFC <span>SHOP</span></div>
@@ -74,6 +83,7 @@ export default function Navbar() {
           </div>
         </Link>
 
+        {/* Desktop links */}
         <div className={styles.links}>
           <Link href="/offres" className={styles.dealsLink}>Offres du jour</Link>
           {NAV_ITEMS.map((item) =>
@@ -121,11 +131,64 @@ export default function Navbar() {
               {count > 0 && <span className={styles.badge}>{count}</span>}
             </button>
           </Link>
-          <Link href="/auth/connexion">
+          <Link href="/auth/connexion" className={styles.signinDesktop}>
             <button className={styles.btnSignin}>Se connecter</button>
           </Link>
+          {/* Hamburger */}
+          <button
+            className={styles.hamburger}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Menu"
+          >
+            <span className={mobileOpen ? styles.barTop : ''}></span>
+            <span className={mobileOpen ? styles.barMid : ''}></span>
+            <span className={mobileOpen ? styles.barBot : ''}></span>
+          </button>
         </div>
       </nav>
+
+      {/* Overlay */}
+      {mobileOpen && <div className={styles.overlay} onClick={closeAll} />}
+
+      {/* Mobile drawer */}
+      <div className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ''}`}>
+        {/* Search mobile */}
+        <div className={styles.drawerSearch}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#999"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input type="text" placeholder="Rechercher..." value={search} onChange={e => setSearch(e.target.value)} />
+        </div>
+
+        <Link href="/offres" className={styles.drawerDeals} onClick={closeAll}>🔥 Offres du jour</Link>
+
+        {NAV_ITEMS.map((item) =>
+          item.links ? (
+            <div key={item.label} className={styles.drawerGroup}>
+              <button
+                className={styles.drawerGroupBtn}
+                onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+              >
+                {item.label}
+                <span className={mobileExpanded === item.label ? styles.chevronUp : styles.chevronDown}>▾</span>
+              </button>
+              {mobileExpanded === item.label && (
+                <div className={styles.drawerSub}>
+                  {item.links.map((l) => (
+                    <Link key={l.label} href={l.href} className={styles.drawerSubLink} onClick={closeAll}>{l.label}</Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link key={item.label} href={item.href} className={styles.drawerLink} onClick={closeAll}>{item.label}</Link>
+          )
+        )}
+
+        <div className={styles.drawerFooter}>
+          <Link href="/auth/connexion" onClick={closeAll}>
+            <button className={styles.btnSignin} style={{width:'100%'}}>Se connecter</button>
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

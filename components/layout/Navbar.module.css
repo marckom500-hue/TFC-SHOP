@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .announce a { color: #FFD700; text-decoration: underline; font-weight: 600; }
 
@@ -18,7 +19,7 @@
   display: flex;
   align-items: center;
   padding: 0 24px;
-  gap: 28px;
+  gap: 16px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -27,6 +28,7 @@
   overflow: visible;
 }
 
+/* LOGO */
 .logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .logoIcon {
   width: 42px; height: 42px;
@@ -41,6 +43,7 @@
 .logoText span { color: var(--primary); }
 .logoSub { font-size: 9px; color: #888; letter-spacing: 3px; text-transform: uppercase; }
 
+/* DESKTOP LINKS */
 .links { display: flex; gap: 2px; align-items: center; flex: 1; }
 .links a, .dropTrigger {
   font-size: 13.5px; font-weight: 500; color: #333;
@@ -66,6 +69,7 @@
 .dropdown a { display: block; padding: 8px 12px; border-radius: 6px; font-size: 13px; transition: all .15s; }
 .dropdown a:hover { background: #fef2f2; color: var(--primary); padding-left: 18px; }
 
+/* ACTIONS */
 .actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .searchBox {
   display: flex; align-items: center;
@@ -94,5 +98,91 @@
 }
 .btnSignin:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(230,51,41,.3); }
 
-@media (max-width: 900px) { .links { display: none; } }
-@media (max-width: 640px) { .searchBox { display: none; } }
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 38px; height: 38px;
+  background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0;
+}
+.hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: #333; border-radius: 2px; transition: all .3s;
+}
+.barTop  { transform: translateY(7px) rotate(45deg) !important; }
+.barMid  { opacity: 0 !important; }
+.barBot  { transform: translateY(-7px) rotate(-45deg) !important; }
+
+/* OVERLAY */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.45);
+  z-index: 1100; backdrop-filter: blur(2px);
+}
+
+/* MOBILE DRAWER */
+.drawer {
+  position: fixed; top: 0; left: 0;
+  width: 300px; height: 100vh;
+  background: white; z-index: 1200;
+  transform: translateX(-100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  box-shadow: 4px 0 24px rgba(0,0,0,.15);
+}
+.drawerOpen { transform: translateX(0); }
+
+.drawerSearch {
+  display: flex; align-items: center; gap: 8px;
+  background: #f5f5f5; border-radius: 10px;
+  padding: 10px 14px; margin: 16px 16px 8px;
+  border: 1.5px solid transparent;
+}
+.drawerSearch:focus-within { border-color: var(--primary); background: white; }
+.drawerSearch input { border: none; background: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 14px; width: 100%; }
+
+.drawerDeals {
+  display: block; padding: 12px 20px;
+  font-size: 14px; font-weight: 700; color: var(--primary);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.drawerLink {
+  display: block; padding: 13px 20px;
+  font-size: 14px; font-weight: 500; color: #222;
+  border-bottom: 1px solid #f0f0f0; transition: color .15s;
+}
+.drawerLink:hover { color: var(--primary); }
+
+.drawerGroup { border-bottom: 1px solid #f0f0f0; }
+.drawerGroupBtn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 20px; background: none; border: none;
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500; color: #222;
+  cursor: pointer; text-align: left;
+}
+.drawerGroupBtn:hover { color: var(--primary); }
+.chevronDown { transition: transform .2s; display: inline-block; }
+.chevronUp   { transform: rotate(180deg); display: inline-block; }
+
+.drawerSub { background: #fafafa; padding: 4px 0; }
+.drawerSubLink {
+  display: block; padding: 10px 20px 10px 32px;
+  font-size: 13px; color: #555; transition: color .15s;
+}
+.drawerSubLink:hover { color: var(--primary); }
+
+.drawerFooter { padding: 16px; margin-top: auto; border-top: 1px solid #eee; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .links { display: none; }
+  .hamburger { display: flex; }
+  .signinDesktop { display: none; }
+  .searchBox { width: 160px; }
+}
+@media (max-width: 640px) {
+  .searchBox { display: none; }
+  .nav { padding: 0 16px; gap: 8px; }
+  .announce { font-size: 11px; padding: 7px 12px; }
+}
